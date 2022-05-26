@@ -1,0 +1,22 @@
+.PriseItem__item {
+    margin-bottom: 1rem;
+}
+
+.PriseItem__change, .PriseItem__delete {
+    width: 1.5rem;
+    height: 1.5rem;
+    background-size: cover;
+}
+
+button {
+    margin-left: 0.5rem;
+}
+
+.PriseItem__change{
+    background-image: url(../../../pic/edit_FILL0_wght400_GRAD0_opsz48.svg);
+
+}
+
+.PriseItem__delete {
+    background-image: url(../../../pic/close_FILL0_wght400_GRAD0_opsz48.svg);
+}

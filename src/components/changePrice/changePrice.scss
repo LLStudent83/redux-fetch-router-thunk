@@ -1,0 +1,17 @@
+.ChangePrice__wrapper {
+   margin: 2rem;
+   display: flex;
+   flex-direction: column;
+   width: 400px;
+}
+
+label {
+    display: block;
+    margin-bottom: 1rem;
+}
+
+input {
+    margin-left: 1rem;
+    float: right;
+    width: 280px;
+}

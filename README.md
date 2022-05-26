@@ -1,46 +1,66 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
 
-## Available Scripts
 
-In the project directory, you can run:
+API
+===
 
-### `npm start`
+Вам необходимо переделать проект с лекции с использованием Router, а также нормальной обработкой загрузки и отображения ошибок.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Всё состояние должно храниться в Redux Store. Для взаимодействия с HTTP используйте fetch и чистый Redux (без дополнительных библиотек), но помните, что вы работаете с побочными эффектами.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Basic Level
 
-### `npm test`
+При переходе на главную страницу пользователя должно перенаправлять автоматически на адрес '/services', на котором загружается список услуг (GET http://localhost:7070/api/services).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+При загрузке данных (GET) должен отображаться спиннер (лоадер):
 
-### `npm run build`
+![](./assets/spinner.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+При получении ошибки (статус не 2xx):
+ 
+![](./assets/error.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+При нормальных загруженных данных:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![](./assets/list.png)
 
-### `npm run eject`
+Для главной страницы сервер присылает данные в формате:
+```json
+[
+    {"id":1,"name":"Замена стекла","price":21000},
+    {"id":2,"name":"Замена дисплея","price":25000},
+    {"id":3,"name":"Замена аккумулятора","price":4000},
+    {"id":4,"name":"Замена микрофона","price":2500}
+]
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+При нажатии на кнопку удалить происходит удаление записи с последующей загрузкой всего списка.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Для удаления необходимо отправить запрос DELETE http://localhost:7070/api/serviced/:id, где id - id сервиса.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+При нажатии на кнопку редактировать происходит переход по адресу: '/services/:id`, где id - это id сервиса.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+В форму подтягиваются данные через GET-запрос (требования к отображению лоадара и ошибок - соответствующие):
 
-## Learn More
+![](./assets/edit.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Обратите внимание, что в форме есть поле `content`, которое приходит только если сделать запрос GET http://localhost:7070/api/services/:id:
+
+```json
+{
+    "id":1,
+    "name":"Замена стекла",
+    "price":21000,
+    "content":"Стекло оригинал от Apple"
+}
+```
+
+При нажатии на кнопку Отмена, происходит возврат к предыдущей странице.
+
+При нажатии на кнопку Сохранить, происходит сохранение записи. При этом:
+1. Спиннер должен отображаться
+1. Если сохранение прошло успешно, выполняется переход на страницу со списком
+1. Если сохранение прошло с ошибкой, переход не осуществляется, высвечивается сообщение об ошибке.
+
+Для сохранения необходимо отправить POST-запрос по адресу http://localhost:7070/api/services, передав весь JSON (с id)
