@@ -7,17 +7,17 @@ import './priceList.scss';
 
 export default function PriceList(): JSX.Element {
   const dispatch = useAppDispatch();
+  const prices = useAppSelector((store) => store.priceListReducer.prices);
+
   useEffect(() => {
     dispatch(createThunkFetchPrices());
   }, [dispatch]);
-
-  const prices = useAppSelector((store) => store.priceListReducer.prices);
 
   return (
     <ul className="PriceList__list">
 
       <p className="PriceList__headers">
-        Здесь выведем список
+        Перечень работ
       </p>
       {prices?.map((prise) => (
         <PriseItem

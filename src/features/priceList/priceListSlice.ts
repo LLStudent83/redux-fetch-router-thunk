@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-// import { AppDispatch } from '../../store';
 
 type Price = {
   id: string,
@@ -35,11 +34,17 @@ export const priceListSlice = createSlice({
   name: 'priceList',
   initialState,
   reducers: {
-    fetchPricesRequest: (state) => ({ ...state, loading: true, error: null }),
+    fetchPricesRequest: (state) => {
+      state.loading = true;
+      state.error = '';
+    },
 
     fetchPricesFailure: (state, action: PayloadAction<InitialStateType>) => {
       const { error } = action.payload;
-      return { ...state, loading: false, error };
+      state.loading = false;
+      state.error = error;
+      state.prices = [];
+      state.changePrice = initialState.changePrice;
     },
 
     fetchPricesSuccess: (state, action:PayloadAction<InitialStateType>) => {
@@ -54,10 +59,6 @@ export const priceListSlice = createSlice({
       return {
         ...state, changePrice, loading: false, error: null,
       };
-    },
-
-    default: (state) => {
-      state;
     },
   },
 });

@@ -11,10 +11,9 @@ import Loader from '../loader/Loader';
 import Popup from '../popup/Popup';
 
 export default function App(): JSX.Element {
-  // const loading = useAppSelector((store) => store.priceListReducer.loading);
   const { loading, error } = useAppSelector((store) => store.priceListReducer);
 
-  const loader = loading ? <Loader /> : null;
+  // const loader = loading ? <Loader /> : null;
   const popup = error ? <Popup text={`Что то пошло не так ${error}`} /> : null;
 
   const navigate = useNavigate();
@@ -25,7 +24,7 @@ export default function App(): JSX.Element {
 
   return (
     <>
-      {loader}
+      {loading && <Loader />}
       {popup}
       <Routes>
         <Route path="/api/services" element={<PriceList />} />

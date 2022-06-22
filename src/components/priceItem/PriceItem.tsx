@@ -1,14 +1,8 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks';
-import {
-  createThunkDeletePrice,
-  createThunkChangePrice,
-} from '../../fetchFunctions';
+import { createThunkDeletePrice } from '../../fetchFunctions';
 import { AppDispatch } from '../../store';
-
-// import { changeCreateed }
-//   from '../../features/priceList/priceListSlice';
 
 import './priceItem.scss';
 
@@ -19,7 +13,6 @@ export default function PriseItem({ name, cost, id }:
 
   const hendlClickChangePrice = (dispatch: AppDispatch, id: string): void => {
     navigate(`/api/services/${id}`);
-    dispatch(createThunkChangePrice(id));
   };
 
   const handelCkickDelete = (dispatch: AppDispatch, id: string): void => {

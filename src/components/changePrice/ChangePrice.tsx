@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { createThunkSaveModifiedPrice } from '../../fetchFunctions';
+import { useNavigate, useParams } from 'react-router-dom';
+import { createThunkSaveModifiedPrice, createThunkChangePrice } from '../../fetchFunctions';
+import { changePriceSuccess } from '../../features/priceList/priceListSlice';
 
 import Button from '../button/Button';
 import { useAppSelector, useAppDispatch } from '../../hooks';
@@ -14,13 +15,17 @@ export default function ChangePrice(): JSX.Element {
     id: '',
     content: '',
   };
-  // eslint-disable-next-line max-len
   const [changePriceState, setChangePriceState] = useState(changePriceStateDefault);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { id } = useParams();
 
-  // eslint-disable-next-line max-len
+  useEffect(() => {
+    dispatch(createThunkChangePrice(id!));
+  }, [dispatch, id]);
+
   const { changePrice } = useAppSelector((store) => (store.priceListReducer));
+
   useEffect(() => {
     setChangePriceState(changePrice!);
   }, [changePrice]);
@@ -53,12 +58,16 @@ export default function ChangePrice(): JSX.Element {
     }
   };
 
-  const hendelClickCancel = (): void => { navigate('/api/services'); };
+  const hendelClickCancel = (): void => {
+    navigate('/api/services');
+    dispatch(changePriceSuccess({ changePrice: changePriceStateDefault }));
+  };
 
   const submit = (): void => {
     dispatch(createThunkSaveModifiedPrice(changePriceState));
     navigate('/api/services');
     setChangePriceState(changePriceStateDefault);
+    dispatch(changePriceSuccess({ changePrice: changePriceStateDefault }));
   };
 
   return (
