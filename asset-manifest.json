@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/redux-fetch-router-thunk/static/css/main.37024d17.css",
-    "main.js": "/redux-fetch-router-thunk/static/js/main.1f13ee11.js",
+    "main.js": "/redux-fetch-router-thunk/static/js/main.1083517c.js",
     "static/js/787.490b6443.chunk.js": "/redux-fetch-router-thunk/static/js/787.490b6443.chunk.js",
     "index.html": "/redux-fetch-router-thunk/index.html",
     "static/media/edit_FILL0_wght400_GRAD0_opsz48.svg": "/redux-fetch-router-thunk/static/media/edit_FILL0_wght400_GRAD0_opsz48.9d5342f1a1af17d25ef4.svg",
     "static/media/close_FILL0_wght400_GRAD0_opsz48.svg": "/redux-fetch-router-thunk/static/media/close_FILL0_wght400_GRAD0_opsz48.d5e5ff10c4ea1565a78c.svg",
     "main.37024d17.css.map": "/redux-fetch-router-thunk/static/css/main.37024d17.css.map",
-    "main.1f13ee11.js.map": "/redux-fetch-router-thunk/static/js/main.1f13ee11.js.map",
+    "main.1083517c.js.map": "/redux-fetch-router-thunk/static/js/main.1083517c.js.map",
     "787.490b6443.chunk.js.map": "/redux-fetch-router-thunk/static/js/787.490b6443.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.37024d17.css",
-    "static/js/main.1f13ee11.js"
+    "static/js/main.1083517c.js"
   ]
 }
