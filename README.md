@@ -1,5 +1,8 @@
-https://llstudent83.github.io/redux-fetch-router-thunk/
+_Репозиторий с кодом сервера для запуска приложения_
+https://github.com/LLStudent83/server-redux-fetch-router-thunk.git
 
+
+https://llstudent83.github.io/redux-fetch-router-thunk/
 
 API
 ===
