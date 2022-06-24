@@ -1,8 +1,10 @@
-_Репозиторий с кодом сервера для запуска приложения_
-https://github.com/LLStudent83/server-redux-fetch-router-thunk.git
+Для запуска приложения необходимо на ПК запустить сервер.  
 
+ссылка на репозиторий с кодом сервера для запуска приложения  
+https://github.com/LLStudent83/server-redux-fetch-router-thunk.git  
 
-https://llstudent83.github.io/redux-fetch-router-thunk/
+Ссылка на приложение  
+https://llstudent83.github.io/redux-fetch-router-thunk/  
 
 API
 ===
